@@ -26,6 +26,7 @@ module "rds" {
   source          = "../rds"
   aws_db_username = var.aws_db_username
   aws_db_password = var.aws_db_password
+  db_sec_group    = module.vpc.rds_security_group_id
 }
 
 module "beanstalk" {
@@ -39,5 +40,10 @@ module "beanstalk" {
 module "ecs_fargate" {
   source      = "../ecs"
   app_name    = var.app_name
-  domain_name = var.domain_name    
+  domain_name = var.domain_name
+  vpc_id      = module.vpc.vpc_id
+  cidr        = var.cidr
+  alb_sec_grp = module.vpc.alb_security_group_id  
+  pv_subnet_id = module.vpc.pv_subnet_id
+  pb_subnet_id = module.vpc.pb_subnet_id
 }

@@ -13,3 +13,7 @@ output "pb_subnet_id" {
 output "rds_security_group_id" {
   value = aws_security_group.test_rds_sec_grp.id
 }
+
+output "alb_security_group_id" {
+  value = aws_security_group.test_alb_sec_grp.id
+}

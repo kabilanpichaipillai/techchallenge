@@ -8,10 +8,15 @@ resource "aws_ecs_task_definition" "test-ecs-task" {
 [
   {
     "name": "iis",
-    "image": "aws_ecr_repository.test-ecr-repo.arn",
+    "image": "<aws_ecr_repository.test-ecr-repo.arn>",
     "cpu": 1024,
     "memory": 2048,
     "essential": true
+    "portMappings": [
+         {
+          "containerPort": 3000
+         }
+    ]
   }
 ]
 TASK_DEFINITION
